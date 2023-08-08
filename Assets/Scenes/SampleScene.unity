@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 369107950}
   - component: {fileID: 369107952}
   - component: {fileID: 369107953}
-  - component: {fileID: 369107954}
   - component: {fileID: 369107955}
+  - component: {fileID: 369107954}
   - component: {fileID: 369107956}
   m_Layer: 0
   m_Name: Player
@@ -185,7 +185,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1409535129, guid: e182256f847707d4fb40ac20bf59409b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  runSpeed: 8
 --- !u!95 &369107955
 Animator:
   serializedVersion: 5
