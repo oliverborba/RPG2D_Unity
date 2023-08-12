@@ -28,3 +28,9 @@ MonoBehaviour:
       portuguese: Como vai?
       english: How are you
       spanish: Como estas?
+  - actorName: "Mo\xE7a"
+    profile: {fileID: 0}
+    sentence:
+      portuguese: "As vezes s\xF3 existindo..."
+      english: 'Sometimes just existing... '
+      spanish: 'A veces simplemente existiendo... '

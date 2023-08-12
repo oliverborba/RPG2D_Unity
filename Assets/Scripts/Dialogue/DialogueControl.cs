@@ -31,6 +31,8 @@ public class DialogueControl : MonoBehaviour
 
     public static DialogueControl instance;
 
+    public bool IsShowing { get => isShowing; set => isShowing = value; }
+
     // awake é chamado antes de todos os Start() na hierarquia de execução de scripts
     private void Awake()
     {
@@ -72,7 +74,7 @@ public class DialogueControl : MonoBehaviour
                 index = 0;
                 dialogueObj.SetActive(false);
                 sentences = null;
-                isShowing = false;
+                IsShowing = false;
 
             }
         }
@@ -81,12 +83,12 @@ public class DialogueControl : MonoBehaviour
     //chamar fala do npc
     public void Speech(string[] txt) 
     {
-        if (!isShowing)
+        if (!IsShowing)
         {
             dialogueObj.SetActive(true);
             sentences = txt;
             StartCoroutine(TypeSentence());
-            isShowing = true;
+            IsShowing = true;
         }
     }
 }
