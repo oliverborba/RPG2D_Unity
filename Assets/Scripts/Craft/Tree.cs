@@ -8,34 +8,42 @@ public class Tree : MonoBehaviour
     [SerializeField] private float treeHealth;
     [SerializeField] private Animator anim;
 
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject woodPrefab;
+    [SerializeField] private int totalWood;
 
-    void Update()
-    {
-        
-    }
+    [SerializeField] private ParticleSystem leafs;
+
+    private bool isCut;
+
     public void OnHit()
     {
         treeHealth--;
 
         anim.SetTrigger("isHit");
+        leafs.Play();
 
 
         if (treeHealth <= 0)
         {
+            totalWood = (Random.Range(1, 4));
+            for (int i = 0; i < totalWood; i++)
+            {
+                Instantiate(woodPrefab, transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f), transform.rotation);
+            }
             //cria o toco e instancia os drops(madeira)
             anim.SetTrigger("cut");
+
+            isCut = true;
+
+
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Axe"))
+        if (collision.CompareTag("Axe") && !isCut)
         {
-            Debug.Log("bateu");
+            //Debug.Log("bateu");
             OnHit();
         }
     }
