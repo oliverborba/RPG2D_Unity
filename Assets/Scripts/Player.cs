@@ -15,7 +15,10 @@ public class Player : MonoBehaviour
     private bool _isRunning;
     private bool _isRolling;
     private bool _isCutting;
+    private bool _isDigging;
     private Vector2 _direction;
+
+    private int handlingObj;
 
     public Vector2 direction
     {
@@ -35,6 +38,8 @@ public class Player : MonoBehaviour
 
     public bool isCutting { get => _isCutting; set => _isCutting = value; }
 
+    public bool isDigging { get => _isDigging; set => _isDigging = value; }
+
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -43,6 +48,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.Alpha1)) 
+        {
+            handlingObj = 0;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2)) 
+        {
+            handlingObj = 1;
+        }
+
         OnInput();
 
         OnRun();
@@ -50,6 +65,9 @@ public class Player : MonoBehaviour
         OnRolling();
 
         OnCutting();
+
+        OnDig();
+
     }
 
     private void FixedUpdate()
@@ -60,22 +78,44 @@ public class Player : MonoBehaviour
 
     void OnCutting()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(handlingObj == 0)
         {
-            _isCutting = true;
-            speed = 0f;
+            if (Input.GetMouseButtonDown(0))
+            {
+                isCutting = true;
+                speed = 0f;
 
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                isCutting = false;
+                speed = initialSpeed;
+            }
         }
-        if (Input.GetMouseButtonUp(0))
+    }
+    
+    void OnDig()
+    {
+        if(handlingObj == 1)
         {
-            _isCutting = false;
-            speed = initialSpeed;
+            if (Input.GetMouseButtonDown(0))
+            {
+                isDigging = true;
+                speed = 0f;
+
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                isDigging = false;
+                speed = initialSpeed;
+            }
         }
+   
     }
 
     void OnInput()
     {
-        _direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
     void OnMove()
@@ -88,12 +128,12 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed = runSpeed;
-            _isRunning = true;
+            isRunning = true;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             speed = initialSpeed;
-            _isRunning = false;
+            isRunning = false;
 
         }
     }
