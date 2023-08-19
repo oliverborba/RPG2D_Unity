@@ -6,18 +6,19 @@ public class PlayerItems : MonoBehaviour
 {
 
     [SerializeField] private int totalWood;
-
     public int TotalWood { get => totalWood; set => totalWood = value; }
+    public float CurrentWater { get => currentWater; set => currentWater = value; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float currentWater;
 
-    // Update is called once per frame
-    void Update()
+    private float waterLimit = 50;
+
+    public void WaterLimit(float water)
     {
-        
+        if(currentWater < waterLimit)
+        {
+            currentWater += water;
+
+        }
     }
 }

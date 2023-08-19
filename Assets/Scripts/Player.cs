@@ -10,12 +10,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float runSpeed;
 
     private Rigidbody2D rig;
+    private PlayerItems playerItens;
 
     private float initialSpeed;
     private bool _isRunning;
     private bool _isRolling;
     private bool _isCutting;
     private bool _isDigging;
+    private bool _isWatering;
+
     private Vector2 _direction;
 
     private int handlingObj;
@@ -39,10 +42,12 @@ public class Player : MonoBehaviour
     public bool isCutting { get => _isCutting; set => _isCutting = value; }
 
     public bool isDigging { get => _isDigging; set => _isDigging = value; }
+    public bool isWatering { get => _isWatering; set => _isWatering = value; }
 
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        playerItens = GetComponent<PlayerItems>();
         initialSpeed = speed;
     }
 
@@ -57,6 +62,11 @@ public class Player : MonoBehaviour
         {
             handlingObj = 1;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            handlingObj = 2;
+        }
+
 
         OnInput();
 
@@ -67,6 +77,8 @@ public class Player : MonoBehaviour
         OnCutting();
 
         OnDig();
+
+        OnWatering();
 
     }
 
@@ -109,8 +121,29 @@ public class Player : MonoBehaviour
                 isDigging = false;
                 speed = initialSpeed;
             }
+        }   
+    }
+
+    void OnWatering()
+    {
+        if (handlingObj == 2)
+        {
+            if (Input.GetMouseButtonDown(0) && playerItens.CurrentWater > 0)
+            {
+                isWatering = true;
+                speed = 0f;
+
+            }
+            if (Input.GetMouseButtonUp(0) || playerItens.CurrentWater < 0)
+            {
+                isWatering = false;
+                speed = initialSpeed;
+            }
+            if (isWatering)
+            {
+                playerItens.CurrentWater -= 0.01f;
+            }
         }
-   
     }
 
     void OnInput()
