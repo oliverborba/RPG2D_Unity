@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
 
     public bool isDigging { get => _isDigging; set => _isDigging = value; }
     public bool isWatering { get => _isWatering; set => _isWatering = value; }
+    public int HandlingObj { get => handlingObj; set => handlingObj = value; }
 
     private void Start()
     {
@@ -56,15 +57,15 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Alpha1)) 
         {
-            handlingObj = 0;
+            HandlingObj = 0;
         }
         if(Input.GetKeyDown(KeyCode.Alpha2)) 
         {
-            handlingObj = 1;
+            HandlingObj = 1;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            handlingObj = 2;
+            HandlingObj = 2;
         }
 
 
@@ -90,7 +91,7 @@ public class Player : MonoBehaviour
 
     void OnCutting()
     {
-        if(handlingObj == 0)
+        if(HandlingObj == 0)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -108,7 +109,7 @@ public class Player : MonoBehaviour
     
     void OnDig()
     {
-        if(handlingObj == 1)
+        if(HandlingObj == 1)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -126,7 +127,7 @@ public class Player : MonoBehaviour
 
     void OnWatering()
     {
-        if (handlingObj == 2)
+        if (HandlingObj == 2)
         {
             if (Input.GetMouseButtonDown(0) && playerItens.CurrentWater > 0)
             {
