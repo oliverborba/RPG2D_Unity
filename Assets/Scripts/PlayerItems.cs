@@ -9,6 +9,7 @@ public class PlayerItems : MonoBehaviour
     [SerializeField] private int totalWood;
     [SerializeField] private int carrots;
     [SerializeField] private float currentWater;
+    [SerializeField] private int fishes;
 
     public int TotalWood { get => totalWood; set => totalWood = value; }
     public int Carrots { get => carrots; set => carrots = value; }
@@ -16,17 +17,16 @@ public class PlayerItems : MonoBehaviour
 
 
     [Header("Limits")]
-    [SerializeField] private float woodLimit = 5;
-    [SerializeField] private float carrotLimit = 10;
-    [SerializeField]private float waterLimit = 50;
-      
+    [SerializeField] private float woodLimit = 5f;
+    [SerializeField] private float carrotLimit = 10f;
+    [SerializeField]private float waterLimit = 50f;
+    [SerializeField] private float fishesLimit = 3f;      
+
     public float WaterLimit1 { get => waterLimit; set => waterLimit = value; }
     public float CarrotLimit { get => carrotLimit; set => carrotLimit = value; }
     public float WoodLimit { get => woodLimit; set => woodLimit = value; }
-
-
-
-
+    public int Fishes { get => fishes; set => fishes = value; }
+    public float FishesLimit { get => fishesLimit; set => fishesLimit = value; }
 
     public void WaterLimit(float water)
     {
