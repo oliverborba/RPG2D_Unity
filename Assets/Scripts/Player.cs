@@ -6,6 +6,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    public bool isPaused;
+
     [SerializeField] private float speed;
     [SerializeField] private float runSpeed;
 
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
     private bool _isCutting;
     private bool _isDigging;
     private bool _isWatering;
+
 
     private Vector2 _direction;
 
@@ -54,38 +57,42 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-
-        if(Input.GetKeyDown(KeyCode.Alpha1)) 
+        if (!isPaused)
         {
-            HandlingObj = 0;
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                HandlingObj = 0;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                HandlingObj = 1;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                HandlingObj = 2;
+            }
+
+            OnInput();
+
+            OnRun();
+
+            OnRolling();
+
+            OnCutting();
+
+            OnDig();
+
+            OnWatering();
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2)) 
-        {
-            HandlingObj = 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            HandlingObj = 2;
-        }
-
-
-        OnInput();
-
-        OnRun();
-
-        OnRolling();
-
-        OnCutting();
-
-        OnDig();
-
-        OnWatering();
-
     }
 
     private void FixedUpdate()
     {
-        OnMove();
+        if (!isPaused)
+        {
+            OnMove();
+        }
     }
     #region Movement
 
