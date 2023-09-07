@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnime : MonoBehaviour
+public class PlayerAnim : MonoBehaviour
 {
     private Player player;
     private Animator anim;
+
+    private Casting cast;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Player>();
         anim = GetComponent<Animator>();
+
+        cast = FindObjectOfType<Casting>();
+
     }
 
     // Update is called once per frame
@@ -74,4 +79,16 @@ public class PlayerAnime : MonoBehaviour
         }
     }
     #endregion
+
+    public void OnCastingStarted()
+    {
+        anim.SetTrigger("isCasting");
+        player.isPaused = true;
+    }
+
+    public void OnCastingEnded()
+    {
+        cast.OnCasting();
+        player.isPaused = false;
+    }
 }
