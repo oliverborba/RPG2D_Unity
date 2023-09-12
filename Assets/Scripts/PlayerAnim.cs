@@ -16,7 +16,7 @@ public class PlayerAnim : MonoBehaviour
     private Casting cast;
 
     private bool isHitting;
-    private float recoveryTime = 1f;
+    private float recoveryTime = 1.5f;
     private float timeCount;
 
     // Start is called before the first frame update
@@ -112,7 +112,7 @@ public class PlayerAnim : MonoBehaviour
         if(hit != null)
         {
             //atacou o inimigo
-            Debug.Log("Acertou o inimigo");
+            hit.GetComponentInChildren<AnimationControl>().OnHit();
         }
     }
     private void OnDrawGizmosSelected()
