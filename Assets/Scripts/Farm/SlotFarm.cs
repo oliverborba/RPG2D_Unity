@@ -20,6 +20,7 @@ public class SlotFarm : MonoBehaviour
     [SerializeField] private float waterAmount;
 
     [SerializeField] private bool detecting;
+    private bool isPlayer; //Verdadeiro quando player enconsta no item
 
     private int initialDigAmaunt;
     private float currentWater;
@@ -51,7 +52,7 @@ public class SlotFarm : MonoBehaviour
 
                 plantedCarrot = true;                
             }
-            if (Input.GetKeyDown(KeyCode.E) && plantedCarrot)
+            if (Input.GetKeyDown(KeyCode.E) && plantedCarrot && isPlayer  )
             {
                 audioSource.PlayOneShot(carrotSFX);
                 spriteRenderer.sprite = hole;
@@ -91,12 +92,20 @@ public class SlotFarm : MonoBehaviour
         {
             detecting = true;
         }
+        if (collision.CompareTag("Player"))
+        {
+            isPlayer = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Water"))
         {
             detecting = false;
+        }
+        if (collision.CompareTag("Player"))
+        {
+            isPlayer = false;
         }
     }
 }

@@ -17,20 +17,20 @@ MonoBehaviour:
   sentence: 
   dialogues:
   - actorName: "Mo\xE7a"
-    profile: {fileID: 0}
+    profile: {fileID: 21300000, guid: f3f014005e42d0448b3109fb3763367a, type: 3}
     sentence:
       portuguese: "Ol\xE1, Jovem"
       english: Hi young
       spanish: Hola joven
   - actorName: Heroi
-    profile: {fileID: 0}
+    profile: {fileID: -1431009847, guid: e182256f847707d4fb40ac20bf59409b, type: 3}
     sentence:
       portuguese: Como vai?
       english: How are you
       spanish: Como estas?
   - actorName: "Mo\xE7a"
-    profile: {fileID: 0}
+    profile: {fileID: 21300000, guid: f3f014005e42d0448b3109fb3763367a, type: 3}
     sentence:
-      portuguese: "As vezes s\xF3 existindo..."
+      portuguese: "Sei l\xE1, as vezes s\xF3 existindo..."
       english: 'Sometimes just existing... '
       spanish: 'A veces simplemente existiendo... '
